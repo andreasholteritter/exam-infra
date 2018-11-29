@@ -15,7 +15,7 @@ jobs:
     params:
       app_name: mysterious-mesa-53354
       heroku_email: andreasholteritter@gmail.com
-      heroku_api_token: 4490e8c1-0e94-42ad-bc84-b90f16779028
+      heroku_api_token: 4d67f4b9-0820-402d-bb9e-97c8424b65ae
 
 
 - name: infra
@@ -27,7 +27,7 @@ jobs:
     input_mapping: {source: exam-infra}
     params:
       github_token: 22750a876b4a07dfcb3bcc6b56f24b77a3081aae
-      heroku_api_key: 4490e8c1-0e94-42ad-bc84-b90f16779028
+      heroku_api_key: 4d67f4b9-0820-402d-bb9e-97c8424b65ae
       statuscake_api_key: XzMYbOgnNhj3QK1ZVa6b
       command: apply
       directories: |
