@@ -4,7 +4,7 @@ image_resource:
   type: docker-image
   source:
     repository: hashicorp/terraform
-    tag: "0.11.8"
+    tag: "0.11.10"
 
 inputs:
 - name: source
@@ -21,6 +21,7 @@ params:
   cache: "false"
   lock_timeout: 5m
   github_token: 22750a876b4a07dfcb3bcc6b56f24b77a3081aae
+  heroku_api_key: 4490e8c1-0e94-42ad-bc84-b90f16779028
   statuscake_api_key: XzMYbOgnNhj3QK1ZVa6b
 run:
   path: ./source/concourse/terraform/terraform.sh
