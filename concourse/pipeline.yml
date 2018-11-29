@@ -3,7 +3,7 @@ jobs:
 - name: deploy-app
   plan:
   - aggregate:
-    - get:exam-app
+    - get: exam-app
     - get: exam-infra
   - task: mvn_build
     file: exam-infra/concourse/java/task.yml
@@ -13,9 +13,9 @@ jobs:
     file: exam-infra/concourse/heroku/push_master_to_heroku.yml
     input_mapping: {source: exam-app}
     params:
-      app_name: ((heroku_app_name))
-      heroku_email: ((heroku_email))
-      heroku_api_token: ((heroku_api_key))
+      app_name: mysterious-mesa-53354
+      heroku_email: andreasholteritter@gmail.com
+      heroku_api_token: 4490e8c1-0e94-42ad-bc84-b90f16779028
 
 
 - name: infra
@@ -26,12 +26,12 @@ jobs:
     file: exam-infra/concourse/terraform/task.yml
     input_mapping: {source: exam-infra}
     params:
-      github_token: ((github_token))
-      heroku_api_key: ((heroku_api_key))
-      statuscake_api_key: ((statuscake_api_key))
+      github_token: 22750a876b4a07dfcb3bcc6b56f24b77a3081aae
+      heroku_api_key: 4490e8c1-0e94-42ad-bc84-b90f16779028
+      statuscake_api_key: XzMYbOgnNhj3QK1ZVa6b
       command: apply
       directories: |
-          terraform
+        terraform
   - put: exam-infra
     params:
       repository: with-state
@@ -43,14 +43,116 @@ resources:
 - name: exam-app
   type: git
   source:
-      uri: git@github.com:andreasholteritter/exam-app.git
-      branch: master
-      private_key: ((deploy_key_app))
+    uri: git@github.com:andreasholteritter/exam-app.git
+    branch: master
+    private_key: |
+      -----BEGIN RSA PRIVATE KEY-----
+      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
+      -----END RSA PRIVATE KEY-----
 
 # Replace with your own repository
 - name: exam-infra
   type: git
   source:
-      uri: git@github.com:andreasholteritter/exam-infra.git
-      branch: master
-      private_key: ((deploy_key_infra))
+    uri: git@github.com:andreasholteritter/exam-infra.git
+    branch: master
+    private_key: |
+      -----BEGIN RSA PRIVATE KEY-----
+      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
+      -----END RSA PRIVATE KEY-----
