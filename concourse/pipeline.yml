@@ -13,6 +13,7 @@ jobs:
       app_name: ((app_name))-app-ci
       heroku_email: ((heroku_email))
       heroku_api_key: ((heroku_api_key))
+      logzio_token: ((logzio_token))
 
 
 - name: infra
