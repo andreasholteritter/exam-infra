@@ -20,8 +20,8 @@ params:
   directories:
   cache: "false"
   lock_timeout: 5m
-  github_token: 22750a876b4a07dfcb3bcc6b56f24b77a3081aae
-  heroku_api_key: 4d67f4b9-0820-402d-bb9e-97c8424b65ae
-  statuscake_api_key: XzMYbOgnNhj3QK1ZVa6b
+  github_token:
+  heroku_api_key:
+  statuscake_api_key:
 run:
   path: ./source/concourse/terraform/terraform.sh
