@@ -28,4 +28,5 @@ run:
           login ${heroku_email}
           password ${heroku_api_token}
       EOF
+      heroku git:remote -a ${app_name}
       git push https://git.heroku.com/${app_name}.git master:refs/heads/master
