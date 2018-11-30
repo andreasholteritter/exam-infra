@@ -4,6 +4,7 @@ jobs:
   plan:
   - aggregate:
     - get: exam-app
+      trigger: true
     - get: exam-infra
   - task: push_to_heroku
     file: exam-infra/concourse/heroku/push_master_to_heroku.yml
