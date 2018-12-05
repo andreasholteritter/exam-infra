@@ -6,6 +6,8 @@
 resource "heroku_app" "ci" {
   name   = "${var.app_prefix}-app-ci"
   region = "eu"
+
+  config_vars {}
 }
 
 # Create a ci database, and configure the app to use it

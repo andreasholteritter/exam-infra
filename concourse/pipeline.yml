@@ -1,26 +1,38 @@
 jobs:
+- name: build
+  plan:
+   - aggregate:
+     - get: exam-app
+       trigger: true
+     - get: exam-infra
 
-- name: deploy-app
+   - task: mvn_build
+     file: exam-infra/concourse/java/task.yml
+     input_mapping: {source: exam-app}
+
+   - put: docker-image-exam-app
+     params:
+       build: jar-file
+
+- name: deploy-docker-image
   plan:
   - aggregate:
-    - get: exam-app
     - get: exam-infra
-  - task: mvn_build
-    file: exam-infra/concourse/java/task.yml
-    input_mapping: {source: exam-app}
-
+    - get: docker-image-exam-app
+      trigger: true
+      passed: [build]
   - task: push_to_heroku
-    file: exam-infra/concourse/heroku/push_master_to_heroku.yml
-    input_mapping: {source: exam-app}
+    file: exam-infra/concourse/heroku/push_docker_image_to_heroku.yml
     params:
-      app_name: ((heroku_app_name))
       heroku_email: ((heroku_email))
       heroku_api_token: ((heroku_api_key))
+      app_name: ((heroku_app_name))
 
 - name: infra
   plan:
   - aggregate:
     - get: exam-infra
+
   - task: apply
     file: exam-infra/concourse/terraform/task.yml
     input_mapping: {source: exam-infra}
@@ -31,18 +43,27 @@ jobs:
       command: apply
       directories: |
           terraform
+
   - put: exam-infra
     params:
       repository: with-state
       rebase: true
 
 resources:
+- name: docker-image-exam-app
+  type: docker-image
+  source:
+    repository: registry.heroku.com/((heroku_app_name))/web
+    username: ((heroku_email))
+    password: ((heroku_api_key))
+
 - name: exam-app
   type: git
   source:
       uri: git@github.com:DevOpsExamUser/exam-app.git
       branch: master
       private_key: ((deploy_key_app))
+
 - name: exam-infra
   type: git
   source:
