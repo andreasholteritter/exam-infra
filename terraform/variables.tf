@@ -4,5 +4,5 @@ variable "app_prefix" {
 }
 
 variable "pipeline_name" {
-  default = "devops301-exam-pipeline"s
+  default = "devops301-exam-pipeline"
 }

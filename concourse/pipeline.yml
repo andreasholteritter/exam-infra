@@ -17,7 +17,6 @@ jobs:
       heroku_email: ((heroku_email))
       heroku_api_token: ((heroku_api_key))
 
-
 - name: infra
   plan:
   - aggregate:
@@ -38,14 +37,12 @@ jobs:
       rebase: true
 
 resources:
-
 - name: exam-app
   type: git
   source:
       uri: git@github.com:DevOpsExamUser/exam-app.git
       branch: master
       private_key: ((deploy_key_app))
-
 - name: exam-infra
   type: git
   source:
