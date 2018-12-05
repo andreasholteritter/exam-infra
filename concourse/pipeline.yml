@@ -22,7 +22,7 @@ jobs:
       trigger: true
       passed: [build]
   - task: push_to_heroku
-    file: exam-infra/concourse/heroku/push_docker_image_to_heroku.yml
+    file: exam-infra/concourse/heroku/release_docker_image.yml
     params:
       heroku_email: ((heroku_email))
       heroku_api_token: ((heroku_api_key))
